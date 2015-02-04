@@ -506,6 +506,14 @@ service adbd /sbin/adbd --root_seclabel=u:r:su:s0
 on property:ro.kernel.qemu=1
     start adbd
 
+# adb over tcp
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
+
 service lmkd /system/bin/lmkd
     class core
     critical
